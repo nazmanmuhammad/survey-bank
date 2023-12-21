@@ -3,7 +3,7 @@
       {{-- <img src="{{ asset('assets/images/logo.svg') }}" class="mr-2" alt="logo"/> --}}
       <a class="navbar-brand brand-logo mr-5" href="index.html"><b>Survey Apps</b></a>
       {{-- <img src="{{ asset('assets/images/logo-mini.svg') }}" alt="logo"/> --}}
-      <a class="navbar-brand brand-logo-mini" href="index.html"><b>S</b></a>
+      <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{{ asset('assets/images/surveyapps-logo') }}" alt="logo"/></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
       <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
