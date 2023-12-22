@@ -15,7 +15,9 @@ class Responden extends Model
     protected $keyType = 'uuid';
 
     protected $fillable = [
-        'ip_address'
+        'ip_address',
+        'name',
+        'criticism_and_suggestions'
     ];
 
     protected $appends = [

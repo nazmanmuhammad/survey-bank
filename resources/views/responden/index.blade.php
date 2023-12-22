@@ -20,17 +20,23 @@
                       <th>
                         Responden IP
                       </th>
+                      <th>
+                        Nama Lengkap Responden
+                      </th>
                       <th style="width: 200px;">
-                        Answers
+                        Jawaban
                       </th>
                       {{-- <th>
                         Progress
                       </th> --}}
                       <th>
-                        Submit Date
+                        Tanggal mengisi survey
                       </th>
                       <th>
-                        Score
+                        Kritik & Saran
+                      </th>
+                      <th>
+                        Skor
                       </th>
                       <th>
                         
@@ -47,6 +53,9 @@
                         {{ $responden->ip_address }}
                         {{-- <img src="{{ asset('assets/images/faces/face1.jpg')}}" alt="image"/> --}}
                       </td>
+                      <td class="py-1">
+                        {{ $responden->name }}
+                      </td>
                       <td>
                         <a href="{{ route('answers', $responden->id) }}" class="btn btn-primary btn-sm">View Answers</a>
                       </td>
@@ -55,6 +64,9 @@
                           <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                       </td> --}}
+                      <td>
+                        {{ $responden->criticism_and_suggestions }}
+                      </td>
                       <td>
                         {{ $responden->created_at->format('d-m-Y H:i:s') }}
                       </td>

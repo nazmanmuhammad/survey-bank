@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>Survey Apps</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css')}}">
   <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css')}}">
@@ -18,7 +18,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png')}}" />
+  <link rel="shortcut icon" href="{{ asset('assets/images/surveyapps-logo.png')}}" />
 </head>
 
 <body>
@@ -35,6 +35,13 @@
                   {{-- <h6 class="font-weight-light">Sign in to continue.</h6> --}}
                   <form class="pt-3" action="{{ route('submitSurvey') }}" method="post">
                     @csrf
+                    <div class="form-group">
+                      <label for="name">Nama Lengkap</label>
+                      <input type="text" class="form-control" name="name" id="name" placeholder="Isi Nama Lengkap">
+                      @error('name')
+                        <span class="">{{ $message }}</span>
+                      @enderror
+                    </div>
                     @foreach ($questions as $key => $question)
                     <div class="form-group">
                             @if ($key==0)
@@ -48,7 +55,7 @@
                             @endif
                             <div class="form-check">
                             <label class="form-check-label">
-                                <input type="radio" class="form-check-input" value="1" name="{{ $question->id }}" id="answer{{ $key+1 }}" value="">
+                                <input type="radio" required class="form-check-input" value="1" name="{{ $question->id }}" id="answer{{ $key+1 }}" value="">
                                 Sangat tidak puas
                             </label>
                             </div>
@@ -78,6 +85,13 @@
                             </div>
                         </div>
                         @endforeach
+                        <div class="form-group">
+                          <label for="name">Kritik & Saran</label>
+                          <input type="text" class="form-control" name="criticism_and_suggestions" id="name" placeholder="Isi Kritik& Saran">
+                          @error('criticism_and_suggestions')
+                            <span class="">{{ $message }}</span>
+                          @enderror
+                        </div>
                         <div class="d-flex justify-content-center" style="margin-top: 50px;">
                             <button type="submit" class="btn btn-primary btn-sm font-weight-medium auth-form-btn" href="#">Submit Survey</button>
                         </div>

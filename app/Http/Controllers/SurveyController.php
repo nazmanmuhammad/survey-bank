@@ -9,7 +9,11 @@ class SurveyController extends Controller
 {
     public function submit(Request $request)
     {
-        $answers = collect($request->all())->splice(1, count($request->all()));
+        $this->validate($request,[
+            'name' => 'required',
+            'criticism_and_suggestions' => 'required'
+        ]);
+        $answers = collect($request->all())->splice(2, count($request->all()) - 3);
         $responden = Responden::create([
             'ip_address' => $request->ip()
         ]);
