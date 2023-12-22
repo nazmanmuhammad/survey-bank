@@ -87,7 +87,7 @@
                         @endforeach
                         <div class="form-group">
                           <label for="name">Kritik & Saran</label>
-                          <input type="text" class="form-control" name="criticism_and_suggestions" id="name" placeholder="Isi Kritik& Saran">
+                          <textarea class="form-control" id="exampleTextarea1" rows="4" name="criticism_and_suggestions"></textarea>
                           @error('criticism_and_suggestions')
                             <span class="">{{ $message }}</span>
                           @enderror
