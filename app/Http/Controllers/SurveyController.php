@@ -15,7 +15,9 @@ class SurveyController extends Controller
         ]);
         $answers = collect($request->all())->splice(2, count($request->all()) - 3);
         $responden = Responden::create([
-            'ip_address' => $request->ip()
+            'ip_address' => $request->ip(),
+            'name' => $request->name,
+            'criticism_and_suggestions' => $request->criticism_and_suggestions
         ]);
 
         foreach($answers as $key => $answer)
