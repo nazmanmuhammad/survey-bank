@@ -7,6 +7,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Respondens</h4>
+              <a href="{{ route('export') }}" class="btn btn-sm btn-success mb-2" style="float: right;">EXPORT <span class="mdi mdi-file-excel"></a>
               {{-- <p class="card-description">
                 Add class <code>.table-striped</code>
               </p> --}}

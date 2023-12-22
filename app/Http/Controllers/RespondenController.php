@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RespondenExport;
 use App\Models\Responden;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RespondenController extends Controller
 {
@@ -70,5 +73,33 @@ class RespondenController extends Controller
     {
         $responden = Responden::with('answers')->findOrFail($id);
         return view('responden.view-answers', compact('responden'));
+    }
+
+    public function print()
+    {
+        $respondens = Responden::with('answers')->get();
+        $pdf = Pdf::loadView('pdf.respondens', $respondens);
+        return $pdf->download('respondens.pdf');
+    }
+
+    public function export()
+    {
+        $respondens = Responden::with('answers')->get();
+        $data = [];
+
+        foreach ($respondens as $key => $value) {
+            $temp['Responden IP'] = $value->ip_address;
+            $temp['Nama Lengkap Responden'] = $value->name;
+            foreach ($value->answers as $key => $answer) {
+                $temp['Jawaban'] = $answer->answer;
+            }
+            $temp['Skor'] = $value->score;
+            $temp['Kritik dan Saran'] = $value->criticism_and_suggestions;
+
+            array_push($data, $temp);
+        }
+
+        if(!$data) return response(['message' => 'No Data'], 500);
+        return Excel::download(new RespondenExport($data), "Data Responden.xlsx");
     }
 }

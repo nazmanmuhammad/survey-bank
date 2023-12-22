@@ -42,3 +42,5 @@ Route::get('login', function() {
 })->name('login');
 Route::post('postLogin', [AuthController::class, 'login'])->name('postLogin');
 Route::post('submit', [SurveyController::class, 'submit'])->name('submitSurvey');
+Route::get('print', [RespondenController::class, 'print'])->name('print');
+Route::get('export', [RespondenController::class, 'export'])->name('export');
