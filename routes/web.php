@@ -35,6 +35,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('answers/{id}', [RespondenController::class, 'answers'])->name('answers');
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::resource('question', QuestionController::class);
+    Route::get('print/{id}', [RespondenController::class, 'print'])->name('print');
+    Route::get('export', [RespondenController::class, 'export'])->name('export');
 
  });
 Route::get('login', function() {
@@ -42,5 +44,3 @@ Route::get('login', function() {
 })->name('login');
 Route::post('postLogin', [AuthController::class, 'login'])->name('postLogin');
 Route::post('submit', [SurveyController::class, 'submit'])->name('submitSurvey');
-Route::get('print', [RespondenController::class, 'print'])->name('print');
-Route::get('export', [RespondenController::class, 'export'])->name('export');

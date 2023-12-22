@@ -75,24 +75,44 @@ class RespondenController extends Controller
         return view('responden.view-answers', compact('responden'));
     }
 
-    public function print()
+    public function print($id)
     {
-        $respondens = Responden::with('answers')->get();
-        $pdf = Pdf::loadView('pdf.respondens', $respondens);
+
+        $respondens = Responden::with('answers')->findOrFail($id);
+        $pdf = Pdf::loadView('pdf.respondens', ['respondens' => $respondens]);
         return $pdf->download('respondens.pdf');
     }
 
     public function export()
     {
-        $respondens = Responden::with('answers')->get();
         $data = [];
+        $respondens = Responden::with('answers')->get();
+        $answers = '';
+
 
         foreach ($respondens as $key => $value) {
+            foreach ($value->answers as $key => $answer) {
+                $count = count($value->answers);
+                if($answer->answer==1)
+                {
+                    $answerResponden = 'Sangat tidak puas';
+                }else if($answer->answer==2)
+                {
+                    $answerResponden = 'Tidak puas';
+                }else if($answer->answer==3)
+                {
+                    $answerResponden = 'Netral';
+                }else if($answer->answer==4)
+                {
+                    $answerResponden = 'Puas';
+                }else{
+                    $answerResponden = 'Sangat puas';
+                }
+                $answers .= $key+1 .'.'. $answerResponden .';';
+            }
             $temp['Responden IP'] = $value->ip_address;
             $temp['Nama Lengkap Responden'] = $value->name;
-            foreach ($value->answers as $key => $answer) {
-                $temp['Jawaban'] = $answer->answer;
-            }
+            $temp['Jawaban'] = $answers;
             $temp['Skor'] = $value->score;
             $temp['Kritik dan Saran'] = $value->criticism_and_suggestions;
 

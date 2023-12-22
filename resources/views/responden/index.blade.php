@@ -7,7 +7,7 @@
           <div class="card">
             <div class="card-body">
               <h4 class="card-title">Respondens</h4>
-              <a href="{{ route('export') }}" class="btn btn-sm btn-success mb-2" style="float: right;">EXPORT <span class="mdi mdi-file-excel"></a>
+              <a href="{{ route('export') }}" class="btn btn-sm btn-success mb-2" style="float: right;">EXPORT <span class="mdi mdi-file-excel"></span></a>
               {{-- <p class="card-description">
                 Add class <code>.table-striped</code>
               </p> --}}
@@ -26,6 +26,9 @@
                       </th>
                       <th style="width: 200px;">
                         Jawaban
+                      </th>
+                      <th>
+                        PRINT
                       </th>
                       {{-- <th>
                         Progress
@@ -59,6 +62,9 @@
                       </td>
                       <td>
                         <a href="{{ route('answers', $responden->id) }}" class="btn btn-primary btn-sm">View Answers</a>
+                      </td>
+                      <td>
+                        <a href="{{ route('print', $responden->id) }}" class="btn btn-danger btn-sm"><span class="mdi mdi-file-pdf"></span></a>
                       </td>
                       {{-- <td>
                         <div class="progress">
